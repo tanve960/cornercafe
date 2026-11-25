@@ -1,0 +1,12 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "orders": {
+      ".read": "auth != null && auth.uid === 'REPLACE_WITH_ADMIN_UID'",
+      "$orderId": {
+        ".write": "(auth != null && auth.uid === 'REPLACE_WITH_ADMIN_UID') || (!data.exists() && auth == null && newData.hasChildren(['customerName', 'phone', 'items', 'total', 'status', 'createdAt', 'dateKey']) && newData.child('customerName').isString() && newData.child('customerName').val().length > 0 && newData.child('phone').isString() && newData.child('phone').val().matches(/^[6-9][0-9]{9}$/) && newData.child('items').hasChildren() && newData.child('total').isNumber() && newData.child('total').val() > 0 && newData.child('status').val() === 'New' && newData.child('createdAt').isNumber() && newData.child('dateKey').isString())"
+      }
+    }
+  }
+}
